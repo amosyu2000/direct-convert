@@ -1,0 +1,5 @@
+<response_label ident="{answerId}">
+	<material>
+		<mattext texttype="text/plain">{answer}</mattext>
+	</material>
+</response_label>
