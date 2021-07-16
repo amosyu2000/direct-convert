@@ -1,0 +1,5 @@
+export { default as answer } from './answer.xml'
+export { default as assessment_meta } from './assessment_meta.xml'
+export { default as imsmanifest } from './imsmanifest.xml'
+export { default as mcq } from './mcq.xml'
+export { default as quiz } from './quiz.xml'

@@ -1,4 +1,4 @@
-<item ident="{itemId}" title="Accusative as the Su 6">
+<item ident="g{itemId}" title="{category}">
 	<itemmetadata>
 		<qtimetadata>
 			<qtimetadatafield>
