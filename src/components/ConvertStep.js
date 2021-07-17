@@ -80,7 +80,7 @@ export function ConvertStep({inputFile}) {
 			zip.file('imsmanifest.xml', imsmanifestXML)
 			zip.folder('non_cc_assessments')
 			zip.file(`g${quizId}/assessment_meta.xml`, assessmentMetaXML)
-			zip.file(`g${quizId}/${quizId}.xml`, quizXML)
+			zip.file(`g${quizId}/g${quizId}.xml`, quizXML)
 			setBlob(await zip.generateAsync({type:'blob'}))
 
 			// Finish up
