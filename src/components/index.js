@@ -1,3 +1,4 @@
-export * from './ConvertStep'
-export * from './TemplateStep'
-export * from './UploadStep'
+export * from './ButtonConvert'
+export * from './ButtonTemplate'
+export * from './MenuMain'
+export * from './SegmentUpload'

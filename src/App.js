@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Container, Grid, Header, Label, Menu} from 'semantic-ui-react'
-import { ConvertStep, TemplateStep, UploadStep } from 'components'
+import { Container, Grid, Header } from 'semantic-ui-react'
+import { ButtonConvert, ButtonTemplate, MenuMain, SegmentUpload } from 'components'
 
 export function App() {
 
@@ -9,25 +9,29 @@ export function App() {
 
 	return (
 		<Container fluid>
-			<Menu attached borderless>
-				<Menu.Item header>Direct Converter</Menu.Item>
-				<Menu.Item>
-					<Label color="green">.XLSX</Label> to <Label color="orange">QTI</Label>
-				</Menu.Item>
-			</Menu>
+			<MenuMain />
 			<Container className="py-4">
 				<Grid divided="vertically">
 					<Grid.Row>
 						<Grid.Column width={1}><Header as="h1">1</Header></Grid.Column>
-						<Grid.Column width={15}><TemplateStep /></Grid.Column>
+						<Grid.Column width={15}>
+							<p>Download the provided <code>.xlsx</code> template and fill it in with your quiz questions.</p>
+							<ButtonTemplate />	
+						</Grid.Column>
 					</Grid.Row>
 					<Grid.Row>
 						<Grid.Column width={1}><Header as="h1">2</Header></Grid.Column>
-						<Grid.Column width={15}><UploadStep inputFile={inputFile} setInputFile={setInputFile} /></Grid.Column>
+						<Grid.Column width={15}>
+							<p>Upload the completed <code>.xlsx</code> file.</p>
+							<SegmentUpload inputFile={inputFile} setInputFile={setInputFile} />
+						</Grid.Column>
 					</Grid.Row>
 					<Grid.Row>
 						<Grid.Column width={1}><Header as="h1">3</Header></Grid.Column>
-						<Grid.Column width={15}><ConvertStep inputFile={inputFile}/></Grid.Column>
+						<Grid.Column width={15}>
+							<p>Convert to QTI and download.</p>
+							<ButtonConvert inputFile={inputFile}/>
+						</Grid.Column>
 					</Grid.Row>
 				</Grid>
 			</Container>

@@ -4,7 +4,7 @@ import { formatBytes } from 'utils'
 
 // A drag and drop region to upload files
 // Also includes a "Browse Files" button if the user wants to open File Explorer
-export function UploadStep({inputFile, setInputFile}) {
+export function SegmentUpload({inputFile, setInputFile}) {
 
 	// States for drag and drop functionality
 	const [dragging, setDragging] = useState(false)
@@ -69,7 +69,6 @@ export function UploadStep({inputFile, setInputFile}) {
 
 	return (
 		<React.Fragment>
-			<p>Upload the completed <code>.xlsx</code> file.</p>
 			<div onDragEnter={handleDragEnter} onDragLeave={handleDragLeave} onDragOver={handleDragOver} onDrop={handleDrop}>
 				<Segment className={dragging ? 'raised secondary' : ''} placeholder textAlign="center">
 					{dragging ?

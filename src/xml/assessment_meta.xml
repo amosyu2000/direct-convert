@@ -6,7 +6,7 @@
 	<scoring_policy>keep_highest</scoring_policy>
 	<hide_results></hide_results>
 	<quiz_type>assignment</quiz_type>
-	<points_possible>{pointsPossible}.0</points_possible>
+	<points_possible>{pointsPossible}</points_possible>
 	<require_lockdown_browser>false</require_lockdown_browser>
 	<require_lockdown_browser_for_results>false</require_lockdown_browser_for_results>
 	<require_lockdown_browser_monitor>false</require_lockdown_browser_monitor>
@@ -35,7 +35,7 @@
 		<quiz_identifierref>g{quizId}</quiz_identifierref>
 		<allowed_extensions></allowed_extensions>
 		<has_group_category>false</has_group_category>
-		<points_possible>{pointsPossible}.0</points_possible>
+		<points_possible>{pointsPossible}</points_possible>
 		<grading_type>points</grading_type>
 		<all_day>false</all_day>
 		<submission_types>online_quiz</submission_types>

@@ -23,11 +23,28 @@ export function formatBytes(bytes, decimals = 2) {
 }
 
 export async function populateXML(filepath, json) {
+	const encodings = {
+		'&': '&amp;',
+		'<': '&lt;',
+		'>': '&gt;',
+		'"': '&quot;',
+		'\n': '&lt;br&gt;'
+	}
 	const file = await axios(filepath)
 	let text = file.data
 	Object.entries(json).forEach(([k,v]) => {
+		let cleanValue = v.toString()
+		// Encode special characters if the value is not already an XML
+		const reXML = new RegExp(/^<(\w+)(\s+[\s\S]*)?>[\s\S]*<\/(\1)>$/)
+		if (!reXML.test(cleanValue.trim())) {
+			console.log(`"${cleanValue}"`)
+			Object.entries(encodings).forEach(([l,w]) => {
+				const re = new RegExp(l, 'g')
+				cleanValue = cleanValue.replace(re, w)
+			})
+		}
 		const re = new RegExp(`{${k}}`, 'g')
-		text = text.replace(re, v)
+		text = text.replace(re, cleanValue)
 	})
 	return text
 }

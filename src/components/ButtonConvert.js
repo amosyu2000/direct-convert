@@ -7,7 +7,7 @@ import moment from 'moment'
 import { generateId, populateXML, rowToObject } from 'utils'
 import * as xml from 'xml'
 
-export function ConvertStep({inputFile}) {
+export function ButtonConvert({inputFile}) {
 
 	const [isConverting, setConverting] = useState(false)
 	const [isConverted, setConverted] = useState(false)
@@ -98,6 +98,9 @@ export function ConvertStep({inputFile}) {
 				if (k === 'Correct answer') {
 					answerId = correctAnswerId
 				}
+				else if (v === null) {
+					return ''
+				}
 				else {
 					answerId = generateId(5)
 				}
@@ -130,11 +133,8 @@ export function ConvertStep({inputFile}) {
 	}
 
 	return (
-		<React.Fragment>
-		<p>Convert to QTI and download.</p>
-			<Button disabled={inputFile === null || isConverting} loading={isConverting} onClick={isConverted ? download : convert} primary>
-				<Icon name={isConverted ? 'download' : 'random'} /> {isConverted ? 'Download QTI' : 'Convert'}
-			</Button>
-		</React.Fragment>
+		<Button disabled={inputFile === null || isConverting} loading={isConverting} onClick={isConverted ? download : convert} primary>
+			<Icon name={isConverted ? 'download' : 'random'} /> {isConverted ? 'Download QTI' : 'Convert'}
+		</Button>
 	)
 }
