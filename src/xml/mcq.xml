@@ -21,7 +21,7 @@
 	</itemmetadata>
 	<presentation>
 		<material>
-			<mattext>{question} {word}&lt;br&gt;&lt;br&gt;{phrase} - {reference}</mattext>
+			<mattext>&lt;br&gt;{question} {word}&lt;br&gt;&lt;br&gt;{phrase} - {reference}&lt;br&gt;</mattext>
 		</material>
 		<response_lid ident="response1" rcardinality="Single">
 			<render_choice>
