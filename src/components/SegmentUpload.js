@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useRef } from 'react'
 import { Button, Grid, Header, Icon, Segment } from 'semantic-ui-react'
 import { formatBytes } from 'utils'
 
@@ -8,16 +8,6 @@ export function SegmentUpload({inputFile, setInputFile}) {
 
 	// States for drag and drop functionality
 	const [dragging, setDragging] = useState(false)
-	const [dragCount, setDragCount] = useState(0)
-
-	useEffect(() => {
-		if (dragCount > 0) {
-			setDragging(true)
-		}
-		else {
-			setDragging(false)
-		}
-	}, [dragCount])
 
 	// Ref to the hidden file input
 	const fileInput = useRef('in')
@@ -32,24 +22,23 @@ export function SegmentUpload({inputFile, setInputFile}) {
 	
 	function handleDragEnter(e) {
 		e.preventDefault()
-		setDragCount(dragCount+1)
+		setDragging(true)
 	}
 	
 	function handleDragLeave(e) {
 		e.preventDefault()
-		setDragCount(dragCount-1)
+		setDragging(false)
 	}
 	
 	function handleDrop(e) {
 		e.preventDefault()
-		setDragCount(0)
+		setDragging(false)
 		const files = e.dataTransfer.files
 		handleFiles(files)
 	}
 
 	// Decides how to alter the states depending on the file input that was received
 	function handleFiles(files) {
-		setInputFile(null)
 		// User should only drag in one file
 		if (files.length !== 1) {
 			return setFileState('ERROR_MULTIPLE')
@@ -69,28 +58,27 @@ export function SegmentUpload({inputFile, setInputFile}) {
 
 	return (
 		<React.Fragment>
-			<div onDragEnter={handleDragEnter} onDragLeave={handleDragLeave} onDragOver={handleDragOver} onDrop={handleDrop}>
-				<Segment className={dragging ? 'raised secondary' : ''} placeholder textAlign="center">
-					{dragging ?
+			<Segment className={dragging ? 'raised secondary' : ''} placeholder textAlign="center">
+				{dragging ?
+				<Header icon>
+					<Icon name="folder open outline" />
+					Drop file here to upload
+				</Header>
+				:
+				<React.Fragment>
 					<Header icon>
-						<Icon name="folder open outline" />
-						Drop file here to upload
+						<Icon name="file outline" />
+						Drag and drop to upload file
 					</Header>
-					:
-					<React.Fragment>
-						<Header icon>
-							<Icon name="file outline" />
-							Drag and drop to upload file
-						</Header>
-						<p>OR</p>
-						<Button secondary onClick={() => fileInput.current.click()}>
-							<Icon name="folder open" /> Browse Files
-						</Button>
-						<input type="file" ref={fileInput} onChange={(e) => handleFiles(e.target.files)} style={{display:'none'}} />
-					</React.Fragment>
-					}
-				</Segment>
-			</div>
+					<p>OR</p>
+					<Button secondary onClick={() => fileInput.current.click()} style={{zIndex: 2}}>
+						<Icon name="folder open" /> Browse Files
+					</Button>
+					<input type="file" ref={fileInput} onChange={(e) => handleFiles(e.target.files)} style={{display:'none'}} />
+				</React.Fragment>
+				}
+				<div onDragEnter={handleDragEnter} onDragLeave={handleDragLeave} onDragOver={handleDragOver} onDrop={handleDrop} style={{position: 'absolute', inset: 0}} />
+			</Segment>
 			{(() => {
 				// Display uploaded file given that the file type is correct
 				if (inputFile) {

@@ -2,9 +2,8 @@
        Tweaks
 --------------------*/
 
-html .ui.menu .item>.label {
-    margin-left: .14285714em;
-}
+#root { min-height: 100vh; overflow-x: hidden; display: flex; flex-direction: column;}
+#root>.container { flex: 1 1; }
 
 /*-------------------
        Margins
@@ -65,3 +64,4 @@ html .ui.menu .item>.label {
 .py-3 { padding-top: 2em; padding-bottom: 2em; }
 .py-4 { padding-top: 4em; padding-bottom: 4em; }
 .py-5 { padding-top: 8em; padding-bottom: 8em; }
+.py-6 { padding-top: 16em; padding-bottom: 16em; }

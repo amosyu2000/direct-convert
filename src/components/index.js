@@ -1,4 +1,5 @@
 export * from './ButtonConvert'
 export * from './ButtonTemplate'
-export * from './MenuMain'
+export * from './DropdownSelect'
+export * from './Footer'
 export * from './SegmentUpload'

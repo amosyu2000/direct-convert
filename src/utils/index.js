@@ -11,15 +11,15 @@ export function generateId(length) {
 
 // https://stackoverflow.com/a/18650828/12191708
 export function formatBytes(bytes, decimals = 2) {
-    if (bytes === 0) return '0 Bytes';
+    if (bytes === 0) return '0 Bytes'
 
-    const k = 1024;
-    const dm = decimals < 0 ? 0 : decimals;
-    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+    const k = 1024
+    const dm = decimals < 0 ? 0 : decimals
+    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
 
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    const i = Math.floor(Math.log(bytes) / Math.log(k))
 
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i]
 }
 
 export async function populateXML(filepath, json) {
@@ -55,4 +55,12 @@ export function rowToObject(headerRow, row) {
 		json[cell.value] = row.getCell(cell.col).value
 	})
 	return json
+}
+
+// https://stackoverflow.com/a/12646864/12191708
+export function shuffleArray(array) {
+	for (let i = array.length - 1; i > 0; i--) {
+		const j = Math.floor(Math.random() * (i + 1));
+		[array[i], array[j]] = [array[j], array[i]]
+	}
 }

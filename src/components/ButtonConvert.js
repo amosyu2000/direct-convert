@@ -4,7 +4,7 @@ import Excel from 'exceljs'
 import { saveAs } from 'file-saver'
 import JSZip from 'jszip'
 import moment from 'moment'
-import { generateId, populateXML, rowToObject } from 'utils'
+import { generateId, populateXML, rowToObject, shuffleArray } from 'utils'
 import * as xml from 'xml'
 
 export function ButtonConvert({inputFile}) {
@@ -110,6 +110,7 @@ export function ButtonConvert({inputFile}) {
 					answerId 
 				})
 			}))
+		shuffleArray(answerXMLs)
 
 		const questionXML = await populateXML(xml.mcq, {
 			answerIds,
