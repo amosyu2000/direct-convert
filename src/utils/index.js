@@ -22,7 +22,7 @@ export function formatBytes(bytes, decimals = 2) {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i]
 }
 
-export async function populateXML(filepath, json) {
+export async function populateString(inputString, json) {
 	const encodings = {
 		'&': '&amp;',
 		'<': '&lt;',
@@ -30,29 +30,50 @@ export async function populateXML(filepath, json) {
 		'"': '&quot;',
 		'\n': '&lt;br&gt;'
 	}
-	const file = await axios(filepath)
-	let text = file.data
+	let text = null
+	// inputString could be a filepath or the string itself
+	if (inputString.startsWith('/static')) {
+		const file = await axios(inputString)
+		text = file.data
+	}
+	else {
+		text = inputString
+	}
 	Object.entries(json).forEach(([k,v]) => {
-		let cleanValue = v.toString()
+		let cleanValue = ''
+		if (v !== undefined && v !== null) {
+			cleanValue = v.toString()
+		}
 		// Encode special characters if the value is not already an XML
 		const reXML = new RegExp(/^<(\w+)(\s+[\s\S]*)?>[\s\S]*<\/(\1)>$/)
 		if (!reXML.test(cleanValue.trim())) {
-			console.log(`"${cleanValue}"`)
 			Object.entries(encodings).forEach(([l,w]) => {
 				const re = new RegExp(l, 'g')
 				cleanValue = cleanValue.replace(re, w)
 			})
 		}
-		const re = new RegExp(`{${k}}`, 'g')
+		// Escape special characters in the key (we want the literals only)
+		const cleanKey = k.replace(/[-&/\\^$*+?.()|[\]{}]/g, '\\$&')
+		const re = new RegExp(`{${cleanKey}}`, 'g')
 		text = text.replace(re, cleanValue)
 	})
 	return text
 }
 
-export function rowToObject(headerRow, row) {
+export function xlsxRowToObject(headerRow, row) {
 	const json = {}
+	let index = 0
 	headerRow.eachCell((cell) => {
-		json[cell.value] = row.getCell(cell.col).value
+		const value = row.getCell(cell.col).value
+
+		// First occurence of the header
+		if (json[cell.value] === undefined) {
+			json[cell.value] = value
+		}
+		else {
+			json[`${cell.value} ${index}`] = value
+			index++
+		}
 	})
 	return json
 }

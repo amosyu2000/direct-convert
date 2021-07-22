@@ -6,5 +6,5 @@ export const FILETYPES = {
 	qti: {
 		name: "QTI Quiz",
 		extension: ".zip"
-	}
+	},
 }

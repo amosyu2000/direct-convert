@@ -1,30 +1,37 @@
+import * as convertEngines from 'engines/convert'
+import * as questionEngines from 'engines/question'
+import * as worksheetEngines from 'engines/worksheet'
+
 export const CONFIG = {
 	xlsx: {
 		qti: {
-			engine: null,
+			convertEngine: convertEngines.xlsxQtiConvertEngine,
 			questions: [
 				{
 					name: "Multiple Choice",
-					engine: null,
+					questionEngine: questionEngines.mcqQuestionEngine,
+					worksheetEngine: worksheetEngines.mcqWorksheetEngine,
 					templates: [
 						{
 							name: "Key Word",
-							question: "{question} {word}\n\n{phrase} - {reference}",
+							question: "{Question} {Word}\n\n{Phrase (with English glosses)} - {Reference}",
 							example: "How are these accusatives functioning? ὑμᾶς & λόγον\n\nἐρωτήσω ὑμᾶς κἀγὼ λόγον ἕνα - Matthew 21:24"
-						}	
+						},
 					]
 				},
 				{
 					name: "Multiple Answers",
-					engine: null,
+					questionEngine: null,
+					worksheetEngine: null,
 					templates: []
 				},
 				{
 					name: "Fill in the Blanks",
-					engine: null,
+					questionEngine: null,
+					worksheetEngine: null,
 					templates: []
 				}
 			]
 		}
-	}
+	},
 }

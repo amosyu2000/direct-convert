@@ -1,4 +1,4 @@
-<item ident="g{itemId}" title="{category}">
+<item ident="g{itemId}" title="{Category}">
 	<itemmetadata>
 		<qtimetadata>
 			<qtimetadatafield>
@@ -21,7 +21,7 @@
 	</itemmetadata>
 	<presentation>
 		<material>
-			<mattext>&lt;br&gt;{question} {word}&lt;br&gt;&lt;br&gt;{phrase} - {reference}&lt;br&gt;</mattext>
+			<mattext>&lt;br&gt;{question}&lt;br&gt;&amp;nbsp;</mattext>
 		</material>
 		<response_lid ident="response1" rcardinality="Single">
 			<render_choice>
@@ -49,7 +49,7 @@
 	<itemfeedback ident="general_fb">
 		<flow_mat>
 			<material>
-				<mattext texttype="text/plain">{explanation}</mattext>
+				<mattext texttype="text/plain">{Explanation}</mattext>
 			</material>
 		</flow_mat>
 	</itemfeedback>

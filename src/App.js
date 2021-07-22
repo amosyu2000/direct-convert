@@ -1,14 +1,13 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import { Footer } from 'components'
-import { ConvertPage, HomePage } from 'routes'
+import { RedirectPage } from 'routes'
 
 export function App() {
 	return (
 		<BrowserRouter basename={process.env.PUBLIC_URL}>
 			<Switch>
-				<Route path="/:inType/:outType"><ConvertPage /></Route>
-				<Route path="/:inType?"><HomePage /></Route>
+				<Route path="/:inType?/:outType?"><RedirectPage /></Route>
 			</Switch>
 			<Footer />
 		</BrowserRouter>
