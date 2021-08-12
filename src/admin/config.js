@@ -21,9 +21,15 @@ export const CONFIG = {
 				},
 				{
 					name: "Multiple Answers",
-					questionEngine: null,
-					worksheetEngine: null,
-					templates: []
+					questionEngine: questionEngines.maqQuestionEngine,
+					worksheetEngine: worksheetEngines.maqWorksheetEngine,
+					templates: [
+						{
+							name: "Parse",
+							question: "Parse the following word: {Word}",
+							example: "Parse the following word: ἤγαγεν"
+						},
+					]
 				},
 				{
 					name: "Fill in the Blanks",

@@ -2,7 +2,7 @@ import Excel from 'exceljs'
 import JSZip from 'jszip'
 import moment from 'moment'
 import { CONFIG } from 'admin'
-import { generateId, populateString, xlsxRowToObject } from 'utils'
+import { generateId, populate, xlsxRowToObject } from 'utils'
 import * as xml from 'xml'
 
 export function xlsxQtiConvertEngine(inFile, callback) {
@@ -48,21 +48,21 @@ export function xlsxQtiConvertEngine(inFile, callback) {
 		// Generate quiz XML
 		const quizId = generateId(32)
 		const title = inFile.name.split('.')[0]
-		const quizXML = await populateString(xml.quiz, {
+		const quizXML = await populate(xml.quiz, {
 			questions: questionsXML,
 			quizId,
 			title
 		})
 		
 		// Generate manifests
-		const assessmentMetaXML = await populateString(xml.assessment_meta, {
+		const assessmentMetaXML = await populate(xml.assessment_meta, {
 			assignmentGroupId: generateId(32),
 			assignmentId: generateId(32),
 			pointsPossible: questionXMLs.length,
 			quizId,
 			title,
 		})
-		const imsmanifestXML = await populateString(xml.imsmanifest, {
+		const imsmanifestXML = await populate(xml.imsmanifest, {
 			manifestId: generateId(32),
 			quizId,
 			resourceId: generateId(32),

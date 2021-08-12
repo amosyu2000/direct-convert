@@ -1,0 +1,45 @@
+<item ident="g{itemId}" title="{Category}">
+	<itemmetadata>
+		<qtimetadata>
+			<qtimetadatafield>
+				<fieldlabel>question_type</fieldlabel>
+				<fieldentry>multiple_answers_question</fieldentry>
+			</qtimetadatafield>
+			<qtimetadatafield>
+				<fieldlabel>points_possible</fieldlabel>
+				<fieldentry>{pointsPossible}</fieldentry>
+			</qtimetadatafield>
+			<qtimetadatafield>
+				<fieldlabel>original_answer_ids</fieldlabel>
+				<fieldentry>{answerIds}</fieldentry>
+			</qtimetadatafield>
+			<qtimetadatafield>
+				<fieldlabel>assessment_question_identifierref</fieldlabel>
+				<fieldentry>g{questionId}</fieldentry>
+			</qtimetadatafield>
+		</qtimetadata>
+	</itemmetadata>
+	<presentation>
+		<material>
+			<mattext>&lt;br&gt;{question}&lt;br&gt;&amp;nbsp;</mattext>
+		</material>
+		<response_lid ident="response1" rcardinality="Multiple">
+			<render_choice>
+				{answers}
+			</render_choice>
+		</response_lid>
+	</presentation>
+	<resprocessing>
+		<outcomes>
+			<decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+		</outcomes>
+		<respcondition continue="No">
+			<conditionvar>
+				<and>
+					{responses}
+				</and>
+			</conditionvar>
+			<setvar action="Set" varname="SCORE">100</setvar>
+		</respcondition>
+	</resprocessing>
+</item>

@@ -22,7 +22,7 @@ export function formatBytes(bytes, decimals = 2) {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i]
 }
 
-export async function populateString(inputString, json) {
+export async function populate(inputString, json) {
 	const encodings = {
 		'&': '&amp;',
 		'<': '&lt;',
@@ -45,7 +45,7 @@ export async function populateString(inputString, json) {
 			cleanValue = v.toString()
 		}
 		// Encode special characters if the value is not already an XML
-		const reXML = new RegExp(/^<(\w+)(\s+[\s\S]*)?>[\s\S]*<\/(\1)>$/)
+		const reXML = new RegExp(/^<(\w+)(\s+[\s\S]*)?>[\s\S]*<\/(\w+)>$/)
 		if (!reXML.test(cleanValue.trim())) {
 			Object.entries(encodings).forEach(([l,w]) => {
 				const re = new RegExp(l, 'g')

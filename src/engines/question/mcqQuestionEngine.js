@@ -1,10 +1,9 @@
-import { generateId, populateString, shuffleArray } from 'utils'
+import { generateId, populate, shuffleArray } from 'utils'
 import * as xml from 'xml'
 
 export async function mcqQuestionEngine(questionTemplate, rowData) {
 	// Generate the question
-	const question = await populateString(questionTemplate, rowData)
-	console.log(question)
+	const question = await populate(questionTemplate, rowData)
 
 	// Generate the answer options
 	const correctAnswerId = generateId(5)
@@ -22,14 +21,14 @@ export async function mcqQuestionEngine(questionTemplate, rowData) {
 				answerId = generateId(5)
 			}
 			answerIds.push(answerId)
-			return await populateString(xml.answer, {
+			return await populate(xml.response_label, {
 				answer: v,
 				answerId 
 			})
 		}))
 	shuffleArray(answerXMLs)
 
-	const questionXML = await populateString(xml.mcq, {
+	const questionXML = await populate(xml.multiple_choice_question, {
 		answerIds,
 		answers: answerXMLs.join('\n'),
 		correctAnswerId,
