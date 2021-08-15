@@ -25,7 +25,7 @@ export const CONFIG = {
 					worksheetEngine: worksheetEngines.maqWorksheetEngine,
 					templates: [
 						{
-							name: "Parse",
+							name: "Parse (Shuffles answers)",
 							question: "Parse the following word: {Word}",
 							example: "Parse the following word: ἤγαγεν"
 						},
