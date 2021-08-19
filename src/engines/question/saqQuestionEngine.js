@@ -9,6 +9,7 @@ export async function saqQuestionEngine(questionTemplate, rowData) {
 	const answerData = Object.entries(rowData).filter(([k,_]) => k.includes('Correct answer')).map(([k,v]) => v)
 	let answerXMLs = [], answerIds = []
 	await Promise.all(answerData.map(async (answer) => {
+		if (!answer) return
 		// Answer Ids are not used anywhere else for some reason
 		answerIds.push(generateId(5))
 		answerXMLs.push(await populate(xml.varequal, { answerId: answer }))

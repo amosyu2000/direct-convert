@@ -16,6 +16,9 @@ export async function maqQuestionEngine(questionTemplate, rowData) {
 		let answerId = generateId(5)
 		
 		// Add response XML to array based on whether the answer is Correct or Incorrect
+		if (!v) {
+			return
+		}
 		if (k.includes('Correct answer')) {
 			responseXMLs.push(await populate(xml.varequal, { answerId }))
 			pointsPossible++
