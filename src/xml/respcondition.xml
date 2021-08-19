@@ -1,0 +1,6 @@
+<respcondition>
+	<conditionvar>
+		<varequal respident="response_{name}">{answerId}</varequal>
+	</conditionvar>
+	<setvar varname="SCORE" action="Add">{score}</setvar>
+</respcondition>

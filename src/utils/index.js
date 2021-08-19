@@ -41,6 +41,7 @@ export async function populate(inputString, json) {
 	}
 	Object.entries(json).forEach(([k,v]) => {
 		let cleanValue = ''
+		// If the value is undefined or null, we just want it to print an empty string
 		if (v !== undefined && v !== null) {
 			cleanValue = v.toString()
 		}
@@ -84,4 +85,9 @@ export function shuffleArray(array) {
 		const j = Math.floor(Math.random() * (i + 1));
 		[array[i], array[j]] = [array[j], array[i]]
 	}
+}
+
+export function splitCSString(string) {
+	if (string === null || string === undefined) return []
+	return string.split(',').map(item => item.trim())
 }

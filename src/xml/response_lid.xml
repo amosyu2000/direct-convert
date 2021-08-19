@@ -1,0 +1,8 @@
+<response_lid ident="response_{name}">
+	<material>
+		<mattext>{name}</mattext>
+	</material>
+	<render_choice>
+		{response_labels}
+	</render_choice>
+</response_lid>

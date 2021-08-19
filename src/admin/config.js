@@ -7,6 +7,18 @@ export const CONFIG = {
 		qti: {
 			convertEngine: convertEngines.xlsxQtiConvertEngine,
 			questions: [
+				// {
+				// 	name: "Multiple Answers",
+				// 	questionEngine: questionEngines.maqQuestionEngine,
+				// 	worksheetEngine: worksheetEngines.maqWorksheetEngine,
+				// 	templates: [
+				// 		// {
+				// 		// 	name: "Parse (Shuffles answers)",
+				// 		// 	question: "Parse the following word: {Word}",
+				// 		// 	example: "Parse the following word: ἤγαγεν"
+				// 		// },
+				// 	]
+				// },
 				{
 					name: "Multiple Choice",
 					questionEngine: questionEngines.mcqQuestionEngine,
@@ -20,23 +32,31 @@ export const CONFIG = {
 					]
 				},
 				{
-					name: "Multiple Answers",
-					questionEngine: questionEngines.maqQuestionEngine,
-					worksheetEngine: worksheetEngines.maqWorksheetEngine,
+					name: "Multiple Dropdowns",
+					questionEngine: questionEngines.mdqQuestionEngine,
+					worksheetEngine: worksheetEngines.mdqWorksheetEngine,
 					templates: [
 						{
-							name: "Parse (Shuffles answers)",
-							question: "Parse the following word: {Word}",
-							example: "Parse the following word: ἤγαγεν"
+							name: "Parse",
+							question: "Parse the following word: {Word}. Tense: [Tense]. Voice: [Voice]. Mood: [Mood]. Case: [Case]. Person: [Person]. Gender: [Gender]. Number: [Number]. "
 						},
+						{
+							name: "Parse with Context",
+							question: "Parse the word \"{Word}\" as it appears in \"{Context}\". Tense: [Tense]. Voice: [Voice]. Mood: [Mood]. Case: [Case]. Person: [Person]. Gender: [Gender]. Number: [Number]. "
+						}
 					]
 				},
 				{
-					name: "Fill in the Blanks",
-					questionEngine: null,
-					worksheetEngine: null,
-					templates: []
-				}
+					name: "Short Answer",
+					questionEngine: questionEngines.saqQuestionEngine,
+					worksheetEngine: worksheetEngines.saqWorksheetEngine,
+					templates: [
+						{
+							name: "Parse Lexical",
+							question: "Give the lexical form for the following word: {Word}"
+						}
+					]
+				},
 			]
 		}
 	},
