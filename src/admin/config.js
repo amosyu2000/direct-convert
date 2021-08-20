@@ -38,11 +38,11 @@ export const CONFIG = {
 					templates: [
 						{
 							name: "Parse",
-							question: "Parse the following word: {Word}. Tense: [Tense]. Voice: [Voice]. Mood: [Mood]. Case: [Case]. Person: [Person]. Gender: [Gender]. Number: [Number]. "
+							question: "Parse the following word: {Word}. Tense: [Tense]. Voice: [Voice]. Mood: [Mood]. Case: [Case]. Person/Gender: [Person/Gender]. Number: [Number]. "
 						},
 						{
 							name: "Parse with Context",
-							question: "Parse the word \"{Word}\" as it appears in \"{Context}\". Tense: [Tense]. Voice: [Voice]. Mood: [Mood]. Case: [Case]. Person: [Person]. Gender: [Gender]. Number: [Number]. "
+							question: "Parse the word \"{Word}\" as it appears in \"{Context}\". Tense: [Tense]. Voice: [Voice]. Mood: [Mood]. Case: [Case]. Person/Gender: [Person/Gender]. Number: [Number]. "
 						}
 					]
 				},
