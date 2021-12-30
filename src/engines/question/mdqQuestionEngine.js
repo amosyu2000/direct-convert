@@ -2,6 +2,12 @@ import { generateId, populate, splitCSString } from 'utils'
 import * as xml from 'xml'
 
 export async function mdqQuestionEngine(questionTemplate, rowData) {
+
+	function toAlphaNumeric(str) {
+		const re = new RegExp('[^a-zA-Z0-9]', 'g')
+		return str.replace(re, '')
+	}
+
 	// For multiple dropdown questions, there is additional functionality in the question itself
 	let question = await populate(questionTemplate, rowData)
 	const allDropdowns = question.match(/\[([^[\]]+)\]/g).map(param => param.substring(1, param.length-1))
@@ -10,11 +16,15 @@ export async function mdqQuestionEngine(questionTemplate, rowData) {
 	const dropdowns = allDropdowns.filter(name => {
 		const correctResponse = rowData[name]
 		const possibleResponses = splitCSString(rowData[`${name} options`])
+		const re = new RegExp(`${name}: \\[${name}]\\. `, 'g')
 		if (possibleResponses.includes(correctResponse)) {
+			// Strip the name down to alphanumeric characters so the XML doesn't misbehave
+			const alphaName = toAlphaNumeric(name)
+			question = question.replace(re, `${name}: [${alphaName}]. `)
 			return true
 		}
 		else {
-			const re = new RegExp(`${name}: \\[${name}]\\. `, 'g')
+			// Remove the string entirely
 			question = question.replace(re, '')
 			return false
 		}
@@ -30,8 +40,15 @@ export async function mdqQuestionEngine(questionTemplate, rowData) {
 			const answerId = answer === correctResponse ? correctAnswerId : generateId(5)
 			return await populate(xml.response_label, { answerId, answer })
 		}))
-		responseLabelXMLs.push(await populate(xml.response_lid, { name, response_labels: responseLabels }))
-		respconditionXMLs.push(await populate(xml.respcondition, { answerId: correctAnswerId, name, score: 100/dropdowns.length }))
+		responseLabelXMLs.push(await populate(xml.response_lid, { 
+			name: toAlphaNumeric(name), 
+			response_labels: responseLabels 
+		}))
+		respconditionXMLs.push(await populate(xml.respcondition, { 
+			answerId: correctAnswerId, 
+			name: toAlphaNumeric(name), 
+			score: 100/dropdowns.length 
+		}))
 	}))
 	
 	const respconditions = respconditionXMLs.join('')
