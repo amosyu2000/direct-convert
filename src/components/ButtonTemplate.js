@@ -38,7 +38,8 @@ export function ButtonTemplate() {
 			options.push({
 				key: options.length,
 				text: template.name,
-				value: JSON.stringify(template)
+				value: JSON.stringify(template),
+				icon: '', // Indent
 			})
 		})
 	})

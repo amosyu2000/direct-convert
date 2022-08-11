@@ -12,11 +12,11 @@ export const CONFIG = {
 				// 	questionEngine: questionEngines.maqQuestionEngine,
 				// 	worksheetEngine: worksheetEngines.maqWorksheetEngine,
 				// 	templates: [
-				// 		// {
-				// 		// 	name: "Parse (Shuffles answers)",
-				// 		// 	question: "Parse the following word: {Word}",
-				// 		// 	example: "Parse the following word: ἤγαγεν"
-				// 		// },
+				// 		{
+				// 			name: "Parse (Shuffles answers)",
+				// 			question: "Parse the following word: {Word}",
+				// 			example: "Parse the following word: ἤγαγεν"
+				// 		},
 				// 	]
 				// },
 				{
@@ -55,6 +55,28 @@ export const CONFIG = {
 							name: "Parse Lexical",
 							question: "Give the lexical form for the following word: {Word}"
 						}
+					]
+				},
+				{
+					name: "Table",
+					questionEngine: undefined,
+					worksheetEngine: worksheetEngines.tblWorksheetEngine,
+					templates: [
+						{
+							name: "Lexical Forms (Table)",
+							question: "Fill out the table below with the relevant lexical forms:",
+							columns: ["Lexical Form"]
+						},
+						{
+							name: "Parse (Table)",
+							question: "Fill out the table below for the words in the left column:",
+							columns: ["Tense", "Voice", "Mood", "Case", "Person or Gender", "Number"]
+						},
+						{
+							name: "Parse with Context (Table)",
+							question: "Fill out the table below for the highlighted words as they appear in the following sentence:\n{Context}",
+							columns: ["Tense", "Voice", "Mood", "Case", "Person or Gender", "Number"]
+						},
 					]
 				},
 			]
