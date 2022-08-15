@@ -59,23 +59,29 @@ export const CONFIG = {
 				},
 				{
 					name: "Table",
-					questionEngine: undefined,
+					questionEngine: questionEngines.tblQuestionEngine,
 					worksheetEngine: worksheetEngines.tblWorksheetEngine,
 					templates: [
 						{
 							name: "Lexical Forms (Table)",
-							question: "Fill out the table below with the relevant lexical forms:",
-							columns: ["Lexical Form"]
+							question: {
+								title: "Fill out the table below with the relevant lexical forms:",
+								columns: ["Lexical Form"],
+							},
 						},
 						{
 							name: "Parse (Table)",
-							question: "Fill out the table below for the words in the left column:",
-							columns: ["Tense", "Voice", "Mood", "Case", "Person or Gender", "Number"]
+							question: {
+								title: "Fill out the table below for the words in the left column:",
+								columns: ["Tense", "Voice", "Mood", "Case", "Person or Gender", "Number"],
+							},
 						},
 						{
 							name: "Parse with Context (Table)",
-							question: "Fill out the table below for the highlighted words as they appear in the following sentence:\n{Context}",
-							columns: ["Tense", "Voice", "Mood", "Case", "Person or Gender", "Number"]
+							question: {
+								title: "Fill out the table below for the highlighted words as they appear in the following sentence:\n{Context}",
+								columns: ["Tense", "Voice", "Mood", "Case", "Person or Gender", "Number"],
+							},
 						},
 					]
 				},

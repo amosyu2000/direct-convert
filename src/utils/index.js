@@ -28,7 +28,8 @@ export async function populate(inputString, json) {
 		'<': '&lt;',
 		'>': '&gt;',
 		'"': '&quot;',
-		'\n': '&lt;br&gt;'
+		'\n': '&lt;br&gt;',
+		'\0': '',
 	}
 	let text = null
 	// inputString could be a filepath or the string itself

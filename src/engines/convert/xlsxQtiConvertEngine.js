@@ -21,6 +21,15 @@ export function xlsxQtiConvertEngine(inFile, callback) {
 			// Generate question XML
 			const headerRowNumber = 2
 			const { name } = worksheet
+
+			// Get data for all rows
+			const allRowsData = [];
+			worksheet.eachRow((row) => {
+				if (row.number <= headerRowNumber) return
+				allRowsData.push(xlsxRowToObject(worksheet.getRow(headerRowNumber), row))
+			})
+
+			// Create a promise that will generate a question per row in the worksheet
 			worksheet.eachRow((row) => {
 				if (row.number <= headerRowNumber) return
 				const rowData = xlsxRowToObject(worksheet.getRow(headerRowNumber), row)
@@ -37,7 +46,7 @@ export function xlsxQtiConvertEngine(inFile, callback) {
 						return false
 					}))
 				const engine = matchingQuestion.questionEngine
-				promises.push(engine(matchingTemplate.question, rowData))
+				promises.push(engine(matchingTemplate.question, rowData, allRowsData))
 			})
 		})
 		

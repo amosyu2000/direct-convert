@@ -1,0 +1,49 @@
+<item ident="g{itemId}" title="{Category}">
+	<itemmetadata>
+		<qtimetadata>
+			<qtimetadatafield>
+				<fieldlabel>question_type</fieldlabel>
+				<fieldentry>fill_in_multiple_blanks_question</fieldentry>
+			</qtimetadatafield>
+			<qtimetadatafield>
+				<fieldlabel>points_possible</fieldlabel>
+				<fieldentry>1.0</fieldentry>
+			</qtimetadatafield>
+			<qtimetadatafield>
+				<fieldlabel>original_answer_ids</fieldlabel>
+				<fieldentry>{answerIds}</fieldentry>
+			</qtimetadatafield>
+			<qtimetadatafield>
+				<fieldlabel>assessment_question_identifierref</fieldlabel>
+				<fieldentry>g{questionId}</fieldentry>
+			</qtimetadatafield>
+		</qtimetadata>
+	</itemmetadata>
+	<presentation>
+		<material>
+			<mattext texttype="text/html">&lt;div&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+				{question}
+				&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+				&lt;table style="border-collapse: collapse; width: 97.8131212723658%; height: 58px;" border="1"&gt;
+					&lt;tbody&gt;
+						{tableRows}
+					&lt;/tbody&gt;
+				&lt;/table&gt;
+			&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;/div&gt;</mattext>
+		</material>
+		{response_lids}
+	</presentation>
+	<resprocessing>
+		<outcomes>
+			<decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+		</outcomes>
+		{respconditions}
+	</resprocessing>
+	<itemfeedback ident="general_incorrect_fb">
+		<flow_mat>
+			<material>
+				<mattext texttype="text/html">{Feedback}</mattext>
+			</material>
+		</flow_mat>
+	</itemfeedback>
+</item>
