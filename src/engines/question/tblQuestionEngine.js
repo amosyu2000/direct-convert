@@ -36,16 +36,17 @@ export async function tblQuestionEngine(questionTemplate, rowData, allRowsData) 
 			const correctResponses = splitCSString(row[`${header} (Correct choices)`])
 			// The first response_label in each response_lid should contain the placeholder
 			const firstAnswerId = generateId(5)
+			answerIds.push(firstAnswerId)
 			const responseLabelXMLs = [await populate(xml.response_label, {
 				answerId: firstAnswerId,
 				answer: placeholder
 			})]
 			// Generate all other response_labels which contain the possible correct answers for each fitb
-			responseLabelXMLs.push(await Promise.all(correctResponses.map(async answer => {
+			await Promise.all(correctResponses.map(async answer => {
 				const answerId = generateId(5)
 				answerIds.push(answerId)
-				return await populate(xml.response_label, { answerId, answer }) 
-			})))
+				return responseLabelXMLs.push(await populate(xml.response_label, { answerId, answer }))
+			}))
 			// Put all response_labels into a response_lid (each fitb corresponds to one response_lid)
 			responseLidXMLs.push(await populate(xml.response_lid, {
 				name: placeholder,
