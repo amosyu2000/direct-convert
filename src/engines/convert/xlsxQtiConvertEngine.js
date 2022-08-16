@@ -52,7 +52,9 @@ export function xlsxQtiConvertEngine(inFile, callback) {
 		
 		// Fulfill all the promises
 		const questionXMLs = await Promise.all(promises.map(async promise => await promise))
-		const questionsXML = questionXMLs.join('\n')
+
+		// Remove empty values, then concatenate
+		const questionsXML = questionXMLs.filter(q => q !== null).join('\n')
 		
 		// Generate quiz XML
 		const quizId = generateId(32)

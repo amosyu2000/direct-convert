@@ -26,7 +26,7 @@
 				&lt;p&gt;&amp;nbsp;&lt;/p&gt;
 				&lt;table style="border-collapse: collapse; width: 97.8131212723658%; height: 58px;" border="1"&gt;
 					&lt;tbody&gt;
-						{tableRows}
+						{trs}
 					&lt;/tbody&gt;
 				&lt;/table&gt;
 			&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;/div&gt;</mattext>
