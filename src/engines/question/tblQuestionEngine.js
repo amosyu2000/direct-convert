@@ -70,7 +70,10 @@ export async function tblQuestionEngine(questionTemplate, rowData, allRowsData) 
 	}
 
 	// Convert td array of string arrays to HTML string
-	const trs = '\0' + trsArray.map(tr => `<tr style="height: 29px;">${tr.map(td => `<td style="height: 29px;">${td}</td>`).join('')}</tr>`).join('')
+	const trs = '\0' + trsArray.map(tr => 
+		`<tr style="height: 29px;">${
+			tr.map((td, index) => `<td style="${ index === 0 ? 'width: 16%; ' : ''}height: 29px;">${td}</td>`).join('')
+		}</tr>`).join('')
 	// Convert feedback string array to HTML string
 	const Feedback = '\0' + feedbackArray.map(p => `<p>${p}</p>`).join('')
 
